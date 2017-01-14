@@ -2,11 +2,15 @@ package recomendation.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import recomendation.domain.Aisle;
-import recomendation.domain.Beacon;
 import recomendation.domain.Category;
 
-public interface AisleRepository extends MongoRepository<Beacon, String> {
+import java.util.List;
+
+public interface AisleRepository extends MongoRepository<Aisle, String> {
     Aisle findById(String id);
 
-    Aisle findByCategory(Category category);
+    List<Aisle> findByCategoriesIn(List<Category> categories);
+
+    Aisle findByLocationId(String locationId);
+
 }

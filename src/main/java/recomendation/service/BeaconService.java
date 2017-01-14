@@ -2,31 +2,31 @@ package recomendation.service;
 
 import org.springframework.stereotype.Service;
 import recomendation.domain.Beacon;
-import recomendation.domain.Category;
 import recomendation.repository.BeaconRepository;
+
+import java.util.List;
 
 @Service
 public class BeaconService {
 
     private BeaconRepository beaconRepository;
+    private AisleService aisleService;
 
-    public BeaconService(BeaconRepository beaconRepository) {
+    public BeaconService(BeaconRepository beaconRepository, AisleService aisleService) {
         this.beaconRepository = beaconRepository;
+        this.aisleService = aisleService;
     }
 
     public Beacon findById(String id) {
-        return beaconRepository.findById(id);
+        return beaconRepository.findByBeaconId(id);
     }
 
-    public Beacon findByLocation(String location) {
-        return beaconRepository.findByLocation(location);
+    public List<Beacon> findByLocation(String locationId) {
+        return beaconRepository.findByLocationId(locationId);
     }
 
     public Beacon save(Beacon beacon) {
         return beaconRepository.save(beacon);
     }
 
-    public Beacon findByCategory(Category category) {
-        return beaconRepository.findByCategory(category);
-    }
 }

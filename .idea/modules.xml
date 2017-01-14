@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom_deploy.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom_deploy.iml" group="rcom" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom_main.iml" group="rcom" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom_test.iml" group="rcom" />
     </modules>

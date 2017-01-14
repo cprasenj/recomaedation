@@ -5,6 +5,8 @@ import recomendation.domain.Aisle;
 import recomendation.domain.Category;
 import recomendation.repository.CategoryRepository;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
@@ -27,7 +29,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category findByAisle(Aisle aisle) {
-        return categoryRepository.findByAisle(aisle);
+    public List<Category> findByAisle(List<Aisle> aisles) {
+        return categoryRepository.findByAisles(aisles);
     }
 }

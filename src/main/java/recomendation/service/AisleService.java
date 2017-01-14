@@ -5,6 +5,8 @@ import recomendation.domain.Aisle;
 import recomendation.domain.Category;
 import recomendation.repository.AisleRepository;
 
+import java.util.List;
+
 @Service
 public class AisleService {
 
@@ -18,7 +20,15 @@ public class AisleService {
         return aisleRepository.findById(id);
     }
 
-    public Aisle findByCategory(Category category) {
-        return aisleRepository.findByCategory(category);
+    public List<Aisle> findByCategory(List<Category> categories) {
+        return aisleRepository.findByCategoriesIn(categories);
+    }
+
+    public Aisle findByLocation(String locationId) {
+        return aisleRepository.findByLocationId(locationId);
+    }
+
+    public void save(Aisle aisle) {
+         aisleRepository.save(aisle);
     }
 }

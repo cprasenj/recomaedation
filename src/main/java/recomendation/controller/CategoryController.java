@@ -3,13 +3,17 @@ package recomendation.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import recomendation.contract.Category;
 import recomendation.domain.Aisle;
-import recomendation.domain.Category;
 import recomendation.service.AisleService;
 import recomendation.service.CategoryService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/category")
@@ -23,25 +27,26 @@ public class CategoryController {
 
     @RequestMapping("/{id}")
     public Category findById(@PathVariable("id") String id) {
-        return categoryService.findById(id);
+        return categoryService.findById(id).toContract();
     }
 
-    @RequestMapping("findByName/{name}")
+    @RequestMapping("/name/{name}")
     public Category findByName(@PathVariable("name") String name) {
-        return categoryService.findByName(name);
+        return categoryService.findByName(name).toContract();
     }
 
-    @RequestMapping("findByAisle/{aisle}")
-    public recomendation.contract.Category findByCategory(@PathVariable("aisle") String aisle) {
+    @RequestMapping("/aisle/{aisle}")
+    public List<Category> findByCategory(@PathVariable("aisle") String aisle) {
         Aisle aisleById = aisleService.findById(aisle);
-        Category categoryByAisle = categoryService.findByAisle(aisleById);
-        return new recomendation.contract.Category(categoryByAisle.getName(), categoryByAisle.getId());
+        return categoryService.findByAisle(Collections.singletonList(aisleById)).stream()
+                .map(recomendation.domain.Category::toContract)
+                .collect(toList());
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createBeacon(@RequestBody recomendation.contract.Category category) {
-        categoryService.save(new Category((category.getName())));
+        categoryService.save(new recomendation.domain.Category((category.getName())));
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
