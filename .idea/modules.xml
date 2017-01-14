@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom_main.iml" group="rcom" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rcom_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rcom_test.iml" group="rcom" />
+    </modules>
+  </component>
+</project>

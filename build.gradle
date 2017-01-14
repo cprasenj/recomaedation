@@ -1,0 +1,55 @@
+buildscript {
+    ext.spring_boot_version = '1.4.3.RELEASE'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+    }
+}
+
+apply plugin: "war"
+apply plugin: "application"
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+ext {
+    querydslVersion = '3.7.4'
+}
+
+war {
+    baseName = 'myapp'
+    version = '1.0.0'
+}
+
+sourceSets {
+    deploy
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //for spring boot
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    //json object
+    compile group: 'org.json', name: 'json', version: '20090211'
+
+    //for lombok
+    compile "org.projectlombok:lombok:1.16.10"
+
+    //for mongodb
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+}
+
+run {
+    jvmArgs = ['-Xdebug', '-Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y']
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.14"
+}
